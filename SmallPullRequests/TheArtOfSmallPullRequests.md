@@ -10,6 +10,11 @@ Have you ever gotten a PR assigned to you where changes span a large number of f
 
 > If you care about the quality of your work and the product you're building for your customer, then having a good review process that generates thoughtful comments and feedback is critical.  Using small, focused pull requests creates a good invitation to your reviewer to provide quality feedback.
 
+Smaller pull requests usually result in:
+- Improved code quality
+- Better feedback
+- Shorter feedback cycle
+- Increased Understandability and Communication with team members 
 
 ## How do I make my pull requests small?
 #### Focus
@@ -19,35 +24,28 @@ A pull request should have a singular focus.  It should do one thing and do it w
 Usually you're given a task that would result in a fairly large unit of work.  Issues that are assigned to you may be an entire feature set.  In total this will usually require changes or additions of a large set of files.  The amount of change required is proportional to the overall size of the original task. This means you will need to decompose this larger task into smaller tasks or units of work.  Most developers are used to doing this to help them understand and work on their tasks, but they may not be thinking about it from a code review perspective.  Planning for the decomposition of your tasks into units of work that build on one another and individually leave the code base in a working state as they are added is a big part of creating PRs that are easy to review.
 
 #### Self Reflection
-No I don't mean reflecting on the meaning of life or your own existance or anything like that.  I mean self-reflecting on the code you just wrote and are about to submit to your peer to review.  Look over the code carefully and consider how easy it will be for them to review.  Is the code readable?  Are the diffs easy to understand?  Is it small enough to be review quickly?  Does the change make sense on it's own?
+No I don't mean reflecting on the meaning of life or your own existance or anything like that.  I mean self-reflecting on the code you just wrote and are about to submit to your peer for review.  Look over the code carefully and consider how easy it will be for them to review.  Is the code readable?  Are the diffs easy to understand?  Is it small enough to be reviewed quickly?  Does the change make sense on it's own?
 
-> **Tip** - Write a pull requests that you would like to review.  Pretend you're the reviewer and create a PR that you would like to review.  As you prepare the PR, take the time to review it yourself.  Is it easy to understand and quick to review?  This type of slef-reflection on your work is really helpful to your reviewer and may even help you find issues or improvements you can make to your own work.
+> **Tip** - Write a pull requests that you would like to review.  Pretend you're the reviewer and look at the PR from their perspective.  As you prepare the PR, take the time to review it yourself.  Is it easy to understand and quick to review?  This type of self-reflection on your work is really helpful to your reviewer and may even help you find issues or improvements for the changes you're about to submit.
 
 #### Context
-Sometimes when you decompose a task down into smaller parts, it can be difficult to understand the change you are proposing in the PR without some context of the larger task.  This is where the PR comment that describes the change you are proposing is important.  Explain why you're making the change, the overall motivations behind it and the actual modifications you are making.  A well crafted pull request description goes a long way towards helping the reviewer understand the motivations behind the changes.  It also will help future you and others who may need to review the changes in the future understand the context and motivations of the code change.
+Sometimes when you decompose a task into smaller parts, it can be difficult to understand the change you are proposing in the PR without some context of the larger task.  This is where the PR comment that describes the change you are proposing is important.  Explain why you're making the change, the overall motivations behind it and the actual modifications you are making.  A well crafted pull request description goes a long way towards helping the reviewer understand the motivations behind the changes.  It also will help future you and others who may need to review the changes in the future understand the context and motivations of the code change.  If you have a larger ticketing or project tracking system, include a link to the task you're working on in the PR description.  If integrations between your project tracking system exists, then consider leveraging them.
 
 > **Tip** - Develop a pull request template for your project that encourages team members to always include details about the motivation and modifications that are being made.  Determine standards that will help your team craft meaningful and understandable changesets.
 
-### Advantages
-
-- **Improved code quality** - 
-    More disciplined and self-review
-- Better feedback
-- Shorter feedback cycle
-- Understandability - 
-
-It's usually possible to work in small pull requests, it just takes discipline.   
-
 ## Why is it so difficult?
-Submitting small pull requests has so many benefits, why would we ever submit a large request?  The reason is that it usually takes more discipline and planning to create small pull requests. However, just like anything else you can turn this discipline into a habit where it becomes your natural tendency to create small well-defined pull requests.
+Submitting small pull requests has so many benefits, why would we ever submit a large request?  The reason is that it usually takes more discipline and planning to create small pull requests. However, just like anything else you can turn this discipline into a habit where it becomes your team's normal process to create small well-defined pull requests.
 
 ### Trunk based development
-- Master branch has to always be deployable.
-    - How to handle this:
-    - Feature flags
-    - Delay wiring up the class in the development process.
+If you are working in a trunk based repository, then your feature branches are usually short-lived and your master branch needs to always be deployable.   This is definitely my preferred workflow for git as I think it improves collaboration and decreases merge conflicts (but that's a topic for another article).  When working in this type of environment, it might seem difficult to create a small PR that is only part of your task that keeps the master branch deployable.  If you're only building part of a feature, how could the change be usuable and how do you ensure it doesn't break anything else?
 
-### Out of order
+There are a couple of good ways to handle this scenario:
+
+- **Dependency chain** - Work on your PR, starting at the lowest dependencies first.  Make sure that your PR stands on its own by creating a PR for the lowest levels first.  That way it will compile and you can add the code that depends on those files later.
+- **Feature flags** - 
+- **Delayed wireup** - If you're using dependency injection then you can prevent new artifacts from being used at runtime by simply not wiring them up.
+
+### Shared Responsibility
 - You need to build class A that depends on Class B, but it has not been created or will be created by another developer.
 
 ### Prototyping 
@@ -68,5 +66,5 @@ Here is a quick recap of these steps for working your way from a prototype to a 
 - 
 
 ## Conclusion
-There really isn't much excuse for submitting large and difficult to review pull requests.   All the tools you need to break your work up so that it can be easily reviewed and understood are made available in git.  
+Creating small, focused, and easily reviewed pull requests isn't that difficult, it just takes a little team displine.  However, it can have a profound impact on improving code quality and team collaboration.
 
