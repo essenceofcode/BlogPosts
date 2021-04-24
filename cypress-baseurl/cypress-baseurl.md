@@ -15,10 +15,10 @@ https://docs.cypress.io/guides/references/best-practices#Setting-a-global-baseUr
 - ### Check app availability on startup
   An added bonus of setting a baseURL is that Cypress will try out the url when the test starts and immediately let you know if the application isn't available for testing.
 
-- ### Base URL for Relative Visits
+- ### Relative Visits
   The baseURL can be set once for the test suite and then any visits that you make to the application you're testing can be done with relative links.  Since you can switch the baseUrl in the configuration on startup this means that you can switch between environments without lots of environment specific link settings.
 
-- ### Base URL for Relative Redirects
+- ### Relative Redirects
 
 - ### Base URL for Session Storage
 
